@@ -67,6 +67,32 @@
     line-height: 1.6;
 }
 
+.artical-container1 {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Style for the headline */
+.artical-container1 .Headline h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Style for the paragraph */
+.artical-container1 .Paragraf p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+
+
 .Picture1-container {
     display: flex;
     flex-direction: column;
@@ -81,3 +107,4 @@
     height: 500px;
     margin: 10px; /* Add spacing between images */
 }  
+
