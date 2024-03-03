@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NewsComponent } from './News/news.component';
 import { HomeComponent } from './home/home.component';
 import { AnimeListComponent } from './anime-list/anime-list.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
@@ -31,7 +31,11 @@ const routes: Routes = [
     component: FooterComponent,
     outlet: 'footer', // Define an outlet for the footer
   },
-  
+  {
+    path: 'news',
+    component: NewsComponent,
+    
+  },
 ];
 
 

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AnimeListComponent } from './anime-list/anime-list.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { FooterComponent } from './footer/footer.component';
+import { NewsComponent } from './News/news.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
     AnimeListComponent,
     AnimeDetailsComponent,
     FooterComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
