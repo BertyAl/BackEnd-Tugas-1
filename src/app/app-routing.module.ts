@@ -6,6 +6,9 @@ import { AnimeListComponent } from './anime-list/anime-list.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotpwComponent } from './forgotpw/forgotpw.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -34,7 +37,18 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
-    
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'forgotpw',
+    component: ForgotpwComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
 ];
 
