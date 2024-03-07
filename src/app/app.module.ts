@@ -9,6 +9,9 @@ import { AnimeListComponent } from './anime-list/anime-list.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsComponent } from './News/news.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotpwComponent } from './forgotpw/forgotpw.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { NewsComponent } from './News/news.component';
     AnimeDetailsComponent,
     FooterComponent,
     NewsComponent,
+    LoginComponent,
+    ForgotpwComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
