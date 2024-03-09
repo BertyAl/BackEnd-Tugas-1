@@ -3,9 +3,9 @@
     <form action="#" method="post">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
-        <div class="forgot-password"><a href ="/forgotpw">Lupa Password?</a></div>
-        <button type="submit" class="masuk"><a href="/home">Login</a></button>
-        <button type="button" class="tolak"><a routerLink="'/home'">Cancel</a></button>
+        <div class="forgot-password"><a [routerLink]="'/forgotpw'">Lupa Password?</a></div>
+        <button type="submit" class="masuk"><a [routerLink]="'/'">Login</a></button>
+        <button type="button" class="tolak"><a [routerLink]="'/'">Cancel</a></button>
     </form>
-    <p>Belum punya akun? <a href="/register">Daftar Akun</a></p>
+    <p>Belum punya akun? <a [routerLink]="'/register'">Daftar Akun</a></p>
 </div>
