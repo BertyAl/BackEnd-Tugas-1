@@ -1,0 +1,34 @@
+.anime-list-container {
+    text-align: center;
+  }
+  
+  .anime-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .anime-list li {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+  }
+  
+  .anime-info {
+    margin-top: 10px;
+  }
+  
+  .anime-info h3 {
+    margin-bottom: 5px;
+  }
+  
+  .anime-info a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+  }
