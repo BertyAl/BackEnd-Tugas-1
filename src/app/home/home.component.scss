@@ -3,7 +3,7 @@
     margin: auto auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row; /* Set to column for vertical layout */
     align-items: center; /* Center horizontally */
@@ -13,13 +13,13 @@
 .container2 {
     position: relative;
     flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    max-width: 400px;
+    box-shadow: 0 1 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px;
     left: 1400px;
     bottom: 275px;
     // margin: -450px 1455px; //-450px 1455px
-    background-color: white;    
+    background-color: rgb(210, 145, 145);    
 }
 
 // .container25 {
@@ -89,7 +89,7 @@
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 /* Style for the headline */
