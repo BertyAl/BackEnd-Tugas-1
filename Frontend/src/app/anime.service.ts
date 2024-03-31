@@ -1,3 +1,5 @@
+// GAK DI PAKE
+
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -24,7 +26,6 @@ export class AnimeService {
       releaseDate: 'Jan 6, 2024',
       rating: 8.44
     },
-    // Add more anime entries as needed
   ];
 
   constructor() { }
@@ -40,3 +41,22 @@ export class AnimeService {
     return of(this.animeData);
   }
 }
+
+
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { Anime } from '../models/anime';; // Import the Anime interface if you have defined one
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AnimeService {
+//   private apiUrl = 'http://localhost:3000/api/anime';
+
+//   constructor(private http: HttpClient) {}
+
+//   getAnimeList(): Observable<Anime[]> {
+//     return this.http.get<Anime[]>(this.apiUrl);
+//   }
+// }
