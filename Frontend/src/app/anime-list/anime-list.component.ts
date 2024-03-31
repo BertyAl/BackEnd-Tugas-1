@@ -28,7 +28,7 @@ interface AnimeListResponse {
 export class AnimeListComponent implements OnInit {
   animeList: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 50;
+  itemsPerPage: number = 52;
 
 
   constructor(private http: HttpClient, private router: Router) { }

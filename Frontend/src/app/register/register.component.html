@@ -1,16 +1,18 @@
-<div class="register-container">
+<div class="logingan">
     <h2>Membuat Akun</h2>
-    <form action="#" method="post">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="password" placeholder="Re-type Password" required>
-        <input type="radio" name="gender" value="male" id="male">
-        <label for="male">Laki-laki</label>
-        <input type="radio" name="gender" value="female" id="female">
-        <label for="female">Perempuan</label>
-        <p>Tanggal lahir:</p>
-        <input type="date" name="birthdate">
-        <button type="submit"><a href= "/login">Create an Account</a></button>
-        <button type="button" class="cancel"><a href= "/login">Cancel</a></button>
-    </form>
+    <div class="form-container">
+        <h2>SignUp</h2>
+        <form action="/signup" method="post">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="password">password:</label>
+              <input type="password" id="password" name="password" placeholder="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+      </div>
+    <p>Sudah punya akun? <a [routerLink]="'/login'">Masuk</a></p>
 </div>

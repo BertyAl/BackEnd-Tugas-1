@@ -1,5 +1,5 @@
 // routes/animeRoutes.js
-
+// GA DI PAKE
 const express = require('express');
 const router = express.Router();
 const Anime = require('../models/Anime');

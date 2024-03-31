@@ -2,8 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Anime = require("./models/Anime.js");
 const cors = require('cors');
-
+const path = require('path');
+const bcrypt = require('bcrypt');
 const app = express();
+const methodOverride = require('method-override');
+const flash = require('express-flash');
+const session = require('express-session');
+const initializePassport = require('./passport-config');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+
+app.use (methodOverride('_method'));
 app.use(cors());
 
 mongoose
@@ -19,6 +28,50 @@ mongoose
   .catch((err) => {
     console.log("MongoDB Failed");
   });
+
+  const UserSchema = new mongoose.Schema({
+    username: String,
+    password: String
+  });
+  
+  const User = mongoose.model('User', UserSchema);
+  
+  // Register endpoint
+  app.post('/api/register', (req, res) => {
+    const { username, password } = req.body;
+  
+    const newUser = new User({
+      username,
+      password
+    });
+  
+    newUser.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+  });
+  
+  // Login endpoint
+  app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+  
+    User.findOne({ username, password })
+      .then(user => {
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+  
+        res.json(user);
+      })
+      .catch(err => console.log(err));
+  });
+
+
+
+
+
+
+
+
   
 app.get('/api/anime',async (req,res) => {
   try{
