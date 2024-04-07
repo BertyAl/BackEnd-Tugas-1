@@ -1,19 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Anime = require("./models/Anime.js");
+const User = require("./models/User.js");
 const cors = require('cors');
-const path = require('path');
 const bcrypt = require('bcrypt');
-const app = express();
+var jwt = require("jsonwebtoken");
 const methodOverride = require('method-override');
-const flash = require('express-flash');
+const config = require("./config/auth.config");
 const session = require('express-session');
-const initializePassport = require('./passport-config');
-const passport = require('passport');
-const bodyParser = require('body-parser');
+const app = express();
+app.use(session({
+  secret: config.secret, // Replace 'your-secret-key' with a secret string for session encryption
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use (methodOverride('_method'));
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(
@@ -29,50 +34,97 @@ mongoose
     console.log("MongoDB Failed");
   });
 
-  const UserSchema = new mongoose.Schema({
-    username: String,
-    password: String
-  });
-  
-  const User = mongoose.model('User', UserSchema);
-  
-  // Register endpoint
-  app.post('/api/register', (req, res) => {
-    const { username, password } = req.body;
-  
-    const newUser = new User({
-      username,
-      password
-    });
-  
-    newUser.save()
-      .then(user => res.json(user))
-      .catch(err => console.log(err));
-  });
-  
-  // Login endpoint
-  app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
-  
-    User.findOne({ username, password })
-      .then(user => {
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
+   app.post(
+    "/api/auth/signup",
+    [
+      checkDuplicateUsernameOrEmail = async (req, res, next) => {
+        try {
+          // Check if username exists
+          const usernameExists = await User.exists({ username: req.body.username });
+          if (usernameExists) {
+            return res.status(400).send({ message: "Failed! Username is already in use!" });
+          }
+      
+          // Check if email exists
+          const emailExists = await User.exists({ email: req.body.email });
+          if (emailExists) {
+            return res.status(400).send({ message: "Failed! Email is already in use!" });
+          }
+      
+          // If neither username nor email exists, move to the next middleware
+          next();
+        } catch (error) {
+          console.error(error);
+          res.status(500).send({ message: "Internal Server Error" });
         }
-  
-        res.json(user);
-      })
-      .catch(err => console.log(err));
-  });
+      },
+    ],
+    exports.signup = async (req, res) => {
+      try {
+        const user = new User({
+          username: req.body.username,
+          email: req.body.email,
+          password: bcrypt.hashSync(req.body.password, 8),
+        });
+    
+        // Save the user to the database
+        await user.save()
+    
+        // Send success response
+        res.send({ message: "User was registered successfully!" });
+      } catch (error) {
+        // Handle errors
+        console.error(error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    }); 
 
+    app.post("/api/auth/signin", exports.signin = async (req, res) => {
+      try {
+        const user = await User.findOne({ username: req.body.username }).exec();
+        if (!user) {
+          return res.status(404).json({ message: "User Not found." });
+        }
+    
+        const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+        if (!passwordIsValid) {
+          return res.status(401).json({ message: "Invalid Password!" });
+        }
+    config
+        const token = jwt.sign({ id: user.id }, config.secret, {
+          algorithm: 'HS256',
+          allowInsecureKeySizes: true,
+          expiresIn: 86400, // 24 hours
+        });
+    
+        // Set the token in the session
+        req.session.token = token;
+    
+        // Return user data and token as JSON response
+        res.status(200).json({
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          token: token
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
 
+    app.post("/api/auth/signout", 
+    exports.signout = async (req, res) => {
+      try {
+        req.session = null;
+        return res.status(200).send({ message: "You've been signed out!" });
+      } catch (err) {
+        this.next(err);
+      }
+    });
 
+// memangil fungsi dari anime untuk di jadikan list pada  data list 
 
-
-
-
-
-  
 app.get('/api/anime',async (req,res) => {
   try{
     const page = parseInt(req.query.page) || 1;
@@ -95,6 +147,7 @@ app.get('/api/anime',async (req,res) => {
   }
 });
 
+// memangil fungsi dari anime untuk di jadikan list pada  anime details
 app.get('/api/anime/:anime_id', async (req, res) => {
   try {
     const { anime_id } = req.params;

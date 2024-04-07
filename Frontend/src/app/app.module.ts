@@ -18,6 +18,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { provideHttpClient,withFetch } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   // Define your routes here
@@ -34,6 +35,7 @@ const routes: Routes = [
     LoginComponent,
     ForgotpwComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

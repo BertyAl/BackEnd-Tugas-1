@@ -1,63 +1,59 @@
-// import { Component } from '@angular/core';
-// import { AuthenticationService } from '../authentication.service';
-// import { Router } from '@angular/router';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.scss']
-// })
-// export class LoginComponent {
-//   email: string; // Declare the email property here
-//   password: string;
-
-//   constructor(private authService: AuthenticationService, private router: Router) {}
-
-//   login() {
-//     this.authService.login(this.email, this.password)
-//       .subscribe(
-//         response => {
-//           console.log('Login successful:', response);
-//           this.router.navigate(['/']);
-//         },
-//         error => {
-//           console.error('Login failed:', error);
-//         }
-//       );
-//   }
-
-//   cancel() {
-//     this.router.navigate(['/']);
-//   }
-// }
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+export class LoginComponent implements OnInit {
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private authService: AuthService,
+    private storageService: StorageService,
+    private router: Router
+  ) {}
 
-  login() {
-    this.errorMessage = '';
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.router.navigateByUrl('/profile');
+      this.isLoggedIn = true;
+      this.roles = this.storageService.getUser().roles;
+    }
+  }
 
-    this.http.post<any>('http://localhost:4000/api/login', { username: this.username, password: this.password })
-      .subscribe(
-        response => {
-          console.log(response);
-          // Handle successful login, e.g., store token in localStorage
-        },
-        error => {
-          console.error(error);
-          this.errorMessage = 'Invalid username or password';
-        }
-      );
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe({
+      next: data => {
+        this.storageService.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        
+        this.router.navigateByUrl('/profile');
+        
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }
+

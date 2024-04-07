@@ -36,7 +36,7 @@
 //   }
 // }
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -44,28 +44,30 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  username: string = '';
-  password: string = '';
-  successMessage: string = '';
-  errorMessage: string = '';
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private AuthService: AuthService) { }
 
-  register() {
-    this.errorMessage = '';
-    this.successMessage = '';
+  onSubmit(): void {
+    const { username, email, password } = this.form;
 
-    this.http.post<any>('http://localhost:4000/api/register', { username: this.username, password: this.password })
-      .subscribe(
-        response => {
-          console.log(response);
-          this.successMessage = 'Registration successful';
-          // Optionally, you can clear the input fields here
-        },
-        error => {
-          console.error(error);
-          this.errorMessage = 'Registration failed';
-        }
-      );
+    this.AuthService.register(username, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    });
   }
 }
