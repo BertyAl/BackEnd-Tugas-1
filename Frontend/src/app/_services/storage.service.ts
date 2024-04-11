@@ -39,4 +39,9 @@ export class StorageService {
     }
     return false;
   }
+  public clearUser(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      window.sessionStorage.removeItem(USER_KEY);
+    }
+  }
 }

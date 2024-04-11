@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
 
   constructor(
     private authService: AuthService,
@@ -28,7 +27,6 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.router.navigateByUrl('/profile');
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
     }
   }
 
@@ -50,10 +48,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     });
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }
 

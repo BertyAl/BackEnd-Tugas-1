@@ -94,7 +94,7 @@ mongoose
         const token = jwt.sign({ id: user.id }, config.secret, {
           algorithm: 'HS256',
           allowInsecureKeySizes: true,
-          expiresIn: 86400, // 24 hours
+          expiresIn: 30, // 24 hours 86400
         });
     
         // Set the token in the session
@@ -113,15 +113,35 @@ mongoose
       }
     });
 
-    app.post("/api/auth/signout", 
-    exports.signout = async (req, res) => {
-      try {
-        req.session = null;
-        return res.status(200).send({ message: "You've been signed out!" });
-      } catch (err) {
-        this.next(err);
-      }
-    });
+    // app.post("/api/auth/signout", (req, res) => {
+    //   try {
+    //     // Destroy the session
+    //     req.session.destroy((err) => {
+    //       if (err) {
+    //         console.error('Session destroy failed:', err);
+    //         return res.status(500).json({ message: 'Sign-out failed' });
+    //       } else {
+    //         return res.status(200).json({ message: "You've been signed out!" });
+    //       }
+    //     });
+    //   } catch (err) {
+    //     console.error('Sign-out failed:', err);
+    //     return res.status(500).json({ message: 'Sign-out failed' });
+    //   }
+    // });
+    
+
+    // app.post("/api/auth/signout", 
+    // exports.signout = async (req, res) => {
+    //   try {
+    //     console.log("Session before sign-out:", req.session); // Log session before sign-out
+    //     req.session = null; // Clear session data
+    //     console.log("Session after sign-out:", req.session);
+    //     return res.status(200).send({ message: "You've been signed out!" });
+    //   } catch (err) {
+    //     this.next(err);
+    //   }
+    // });
 
 // memangil fungsi dari anime untuk di jadikan list pada  data list 
 
