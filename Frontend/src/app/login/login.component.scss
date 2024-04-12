@@ -1,89 +1,179 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 100vh;
-}
+// body {
+//     font-family: Arial, sans-serif;
+//     background-color: #f4f4f4;
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     justify-content: center; 
+//     align-items: center;
+//     height: 100vh;
+// }
 
-.logingan {
+// .logingan {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #fff;
+//     border-radius: 8px;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//     padding: 20px;
+//     width: 300px;
+//     margin: auto;
+// }
+
+// .logingan h2 {
+//     text-align: center;
+//     color: #333;
+// }
+
+// .logingan form {
+//     display: flex;
+//     flex-direction: column; 
+// }
+
+// .logingan input {
+//     margin-bottom: 10px;
+//     padding: 10px;
+//     border: 1px solid #ccc;
+//     border-radius: 4px;
+// }
+
+// .logingan .forgot-password {
+//     text-align: right;
+//     margin-bottom: 10px;
+// }
+
+// .logingan .forgot-password a {
+//     color: #007bff;
+//     text-decoration: none;
+// }
+
+// .logingan button {
+//     background-color: #007bff;
+//     color: #fff;
+//     padding: 10px;
+//     border: none;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+// }
+
+// .logingan button.tolak {
+//     background-color: #ccc;
+//     margin-top: 5px;
+// }
+
+// .logingan button:hover {
+//     background-color: #1b3358;
+// }
+
+// .logingan p {
+//     margin-top: 15px;
+//     text-align: center;
+// }
+
+// .logingan a {
+//     color: #007bff;
+//     text-decoration: none;
+// }
+
+// .logingan .tolak a {
+//     color: #fff;
+//     text-decoration: none;
+// }
+
+// .logingan .masuk a {
+//     color: #fff;
+//     text-decoration: none;
+// }
+
+.col-md-12 {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    margin: auto;
-}
+    height: 93vh;
+  
+    .card-container {
+      max-width: 400px;
+      padding: 40px;
+  
+      .sign-in-heading {
+        text-align: center;
+    }
+  
+      form {
+        .form-group {
+          text-align: center;
+          margin-bottom: 20px;
+  
+          label {
+            display: block;
+            font-weight: bold;
+          }
+  
+          input[type='text'],
+          input[type='password'] {
+            width: calc(100% - 22px); /* Adjusted width for email input */
 
-.logingan h2 {
-    text-align: center;
-    color: #333;
-}
-
-.logingan form {
-    display: flex;
-    flex-direction: column; 
-}
-
-.logingan input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.logingan .forgot-password {
-    text-align: right;
-    margin-bottom: 10px;
-}
-
-.logingan .forgot-password a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.logingan button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logingan button.tolak {
-    background-color: #ccc;
-    margin-top: 5px;
-}
-
-.logingan button:hover {
-    background-color: #1b3358;
-}
-
-.logingan p {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.logingan a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.logingan .tolak a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.logingan .masuk a {
-    color: #fff;
-    text-decoration: none;
-}
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+  
+          .invalid-feedback {
+            color: red;
+            margin-top: 5px;
+          }
+        }
+  
+        button.btn-primary {
+          width: 100%;
+          padding: 10px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+  
+        .alert {
+          margin-top: 10px;
+          padding: 10px;
+          border-radius: 4px;
+        }
+  
+        .alert-danger {
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
+          color: #721c24;
+        }
+  
+        .alert-success {
+          background-color: #d4edda;
+          border-color: #c3e6cb;
+          color: #155724;
+        }
+      }
+  
+      p {
+        text-align: center;
+        margin-top: 10px;
+  
+        a {
+          text-decoration: none;
+          color: #007bff;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }

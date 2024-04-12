@@ -12,11 +12,17 @@ import { NewsComponent } from './News/news.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpwComponent } from './forgotpw/forgotpw.component';
 import { RegisterComponent } from './register/register.component';
+import { RouterModule, Routes } from '@angular/router';
 
 //service
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient,withFetch } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
+const routes: Routes = [
+  // Define your routes here
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,16 +35,21 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ForgotpwComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch()), // Configure HttpClient with fetch enabled
+
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

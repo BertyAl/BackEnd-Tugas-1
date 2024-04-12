@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { NewsComponent } from './News/news.component';
 import { HomeComponent } from './home/home.component';
 import { AnimeListComponent } from './anime-list/anime-list.component';
@@ -9,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpwComponent } from './forgotpw/forgotpw.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -49,6 +51,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 
