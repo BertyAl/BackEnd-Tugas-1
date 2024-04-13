@@ -1,19 +1,19 @@
 <div class="anime-details-container">
-    <h2>Anime Details</h2>
-    <div *ngIf="anime">
-      <div class="anime-header">
-        <img [src]="anime.main_pic" alt="{{ anime.title }}" />
-        <h3>{{ anime.title }}</h3>
-      </div>
-      <p>{{ anime.synopsis }}</p>
-      <div class="additional-details">
-        <p><strong>Genre:</strong> {{ anime.genres }}</p>
-        <p><strong>Release Date:</strong> {{ anime.season }}</p>
-        <p><strong>Studio:</strong> {{ anime.studios }}</p>
-        <!-- Add more details as needed -->
-      </div>
+  <h2>Anime Details</h2>
+  <div *ngIf="anime">
+    <div class="anime-header">
+      <img [src]="anime.main_pic" alt="{{ anime.title }}" />
+      <h3>{{ anime.title }}</h3>
     </div>
-    <div *ngIf="!anime">
-      <p>Loading anime details...</p>
+    <p>{{ anime.synopsis }}</p>
+    <div class="additional-details">
+      <p><strong>Genre:</strong> {{ anime.genres }}</p>
+      <p><strong>Release Date:</strong> {{ anime.season }}</p>
+      <p><strong>Studio:</strong> {{ anime.studios }}</p>
+      <!-- Add more details as needed -->
     </div>
   </div>
+  <div *ngIf="!anime">
+    <p>Loading anime details...</p>
+  </div>
+</div>

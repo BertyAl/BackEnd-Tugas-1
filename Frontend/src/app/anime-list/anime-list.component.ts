@@ -1,5 +1,3 @@
-// anime-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -26,10 +24,11 @@ interface AnimeListResponse {
   styleUrls: ['./anime-list.component.scss']
 })
 export class AnimeListComponent implements OnInit {
-  animeList: any[] = [];
+  animeList: Anime[] = [];
+  filteredAnimeList: Anime[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 52;
-
+  searchQuery: string = '';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -39,33 +38,37 @@ export class AnimeListComponent implements OnInit {
 
   loadAnimeList() {
     const url = `http://localhost:4000/api/anime?page=${this.currentPage}&limit=${this.itemsPerPage}`;
-    // this.http.get<any[]>('http://localhost:4000/api/anime').subscribe(
     this.http.get<AnimeListResponse>(url).subscribe(
-
       (data: AnimeListResponse) => {
         this.animeList = data.animeList;
+        this.filteredAnimeList = this.animeList; // Initialize filtered list with all anime
       },
       error => {
         console.error('Error fetching anime list:', error);
       }
     );
   }
+
   nextPage() {
     window.scrollTo(0, 0);
     this.currentPage++;
     this.loadAnimeList();
     this.router.navigate(['/anime-list'], { queryParams: { page: this.currentPage } });
-
   }
 
   previousPage() {
     if (this.currentPage > 1) {
-      window.scrollTo(0, 0);  
+      window.scrollTo(0, 0);
       this.currentPage--;
       this.loadAnimeList();
       this.router.navigate(['/anime-list'], { queryParams: { page: this.currentPage } });
-
     }
   }
-}
 
+  // Filter anime list based on search query
+  filterAnimeList() {
+    this.filteredAnimeList = this.animeList.filter(anime =>
+      anime.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+}
