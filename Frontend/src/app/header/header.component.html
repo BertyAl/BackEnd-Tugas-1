@@ -4,9 +4,25 @@
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/anime-list">Anime List</a></li>
         <li><a routerLink="/news">News</a></li>
-        <li><a routerLink="/login">Login</a></li>
+        <li>
+          <ng-container *ngIf="!isLoggedIn()">
+            <a routerLink="/login">Login</a>
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn()">
+            <a routerLink="/profile">Profile</a>
+          </ng-container>
+        
+        </li>
       </ul>
     </nav>
   </header>
 
+  <!-- <li>
+    <ng-container *ngIf="isLoggedIn(); else loginLink">
+      <a routerLink="/profile">Profile</a>
+    </ng-container>
+    <ng-template #loginLink>
+      <a routerLink="/login">Login</a>
+    </ng-template>
+  </li> -->
   
