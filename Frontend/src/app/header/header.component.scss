@@ -28,18 +28,50 @@ header {
             transition: color 0.3s;
             font-size: 24px;
             margin: 0 16px;
-
-
-            
+           
             &:hover {
               color: #ffcc00; // Set your desired hover color
             }
           }
+          &.dropdown {
+            position: relative;
+  
+            .dropdown-menu {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              background-color: #333;
+              // border: 1px solid #fff; // Adjust border color as needed
+              border-radius: 4px;
+              padding: 10px;
+              z-index: 1000;
+  
+              .dropdown-item {
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+                display: block;
+                padding: 8px 16px;
+                transition: background-color 0.3s;
+  
+                &:hover {
+                  background-color: #ffcc00; // Set your desired hover color
+                }
+              }
+            }
+  
+            &:hover .dropdown-menu {
+              display: block;
+            }
         }
         
       }
     }
   }
+}
   .content {
     padding-top: 60px; /* Adjust this value according to your navbar height */
   }
+  
+  

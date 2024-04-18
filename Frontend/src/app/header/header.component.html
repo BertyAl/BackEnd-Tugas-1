@@ -2,7 +2,16 @@
     <nav>
       <ul>
         <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/anime-list">Anime List</a></li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Anime
+          </a>  
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/anime-list']">Anime List</a>
+            <a class="dropdown-item" [routerLink]="['/route2']">Genre</a>
+          </div>
+        </li>
         <li><a routerLink="/news">News</a></li>
         <li>
           <ng-container *ngIf="!isLoggedIn()">
@@ -17,12 +26,5 @@
     </nav>
   </header>
 
-  <!-- <li>
-    <ng-container *ngIf="isLoggedIn(); else loginLink">
-      <a routerLink="/profile">Profile</a>
-    </ng-container>
-    <ng-template #loginLink>
-      <a routerLink="/login">Login</a>
-    </ng-template>
-  </li> -->
+
   
