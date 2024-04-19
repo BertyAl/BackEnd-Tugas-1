@@ -1,7 +1,7 @@
 // profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../_services/auth.service';
+// import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   bookmarks: string[] = [];
 
   constructor(
-    private authService: AuthService,
+    // private authService: AuthService,
     private storageService: StorageService,
     private router: Router
   ) {}

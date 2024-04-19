@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +8,19 @@ import { StorageService } from '../_services/storage.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  currentUser: any;
   constructor(
-    private authService: AuthService,
-    private storageService: StorageService
-  ) { }
-
+    private storageService: StorageService,
+    private router: Router 
+   ) { }
+   ngOnInit(): void {
+    this.currentUser = this.storageService.getUser();
+   }
   isLoggedIn(): boolean {
     return this.storageService.isLoggedIn(); 
+  }
+  logout(): void {
+    this.storageService.clearUser();
+    this.router.navigateByUrl('/login');
   }
 }

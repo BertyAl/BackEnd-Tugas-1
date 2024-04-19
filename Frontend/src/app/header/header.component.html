@@ -18,7 +18,15 @@
             <a routerLink="/login">Login</a>
           </ng-container>
           <ng-container *ngIf="isLoggedIn()">
-            <a routerLink="/profile">Profile</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLink="/profile">
+                Profile
+              </a>  
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+              </div>
+            </li>
+            <!-- <a routerLink="/profile">Profile</a> -->
           </ng-container>
         
         </li>
