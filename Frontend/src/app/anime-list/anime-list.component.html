@@ -1,7 +1,13 @@
 <div class="anime-list-container">
 <br>
     <h2>Anime List</h2>
-  
+    
+    <div class="pagination">
+      <button (click)="previousPage()">Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()">Next</button>
+    </div>
+    
     <ul class="anime-list">
       <li *ngFor="let anime of animeList">
         <img [src]="anime.main_pic" alt="{{ anime.title }}" />

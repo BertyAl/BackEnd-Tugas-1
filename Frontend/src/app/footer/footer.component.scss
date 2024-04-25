@@ -1,19 +1,5 @@
-// footer {
-//   background-color: #333;
-//   color: #fff;
-//   padding: 1rem;
-//   padding-top: 1rem;
-//   padding-bottom: 10px;
-//   text-align: center;
-//   bottom: 0;
-
-//   p {
-//     margin: 0;
-//   }
-// }
-
 footer {
-  position: relative;
+  position:static;
   bottom: 0;
   width: auto;
   background-color: #333;
@@ -25,3 +11,4 @@ footer {
     margin: 0;
   }
 }
+

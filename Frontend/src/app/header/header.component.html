@@ -9,10 +9,11 @@
           </a>  
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" [routerLink]="['/anime-list']">Anime List</a>
-            <a class="dropdown-item" [routerLink]="['/route2']">Genre</a>
+            <a class="dropdown-item" [routerLink]="['/genre']">Genre</a>
           </div>
         </li>
         <li><a routerLink="/news">News</a></li>
+        <li><a routerLink="/community">Community</a></li>
         <li>
           <ng-container *ngIf="!isLoggedIn()">
             <a routerLink="/login">Login</a>

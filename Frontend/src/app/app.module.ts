@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { provideHttpClient,withFetch } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
+import { GenreComponent } from './genre/genre.component';
+import { CommunityComponent } from './community/community.component';
 
 const routes: Routes = [
   // Define your routes here
@@ -36,6 +38,8 @@ const routes: Routes = [
     ForgotpwComponent,
     RegisterComponent,
     ProfileComponent,
+    GenreComponent,
+    CommunityComponent,
   ],
   imports: [
     BrowserModule,
