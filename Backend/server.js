@@ -9,8 +9,9 @@ const methodOverride = require('method-override');
 const config = require("./config/auth.config");
 const session = require('express-session');
 const app = express();
+const bodyParser = require('body-parser');
 app.use(session({
-  secret: config.secret, // Replace 'your-secret-key' with a secret string for session encryption
+  secret: config.secret, 
   resave: false,
   saveUninitialized: true
 }));
@@ -19,6 +20,7 @@ app.use (methodOverride('_method'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 mongoose
   .connect(
@@ -39,19 +41,19 @@ mongoose
     [
       checkDuplicateUsernameOrEmail = async (req, res, next) => {
         try {
-          // Check if username exists
+          // check duplikat username
           const usernameExists = await User.exists({ username: req.body.username });
           if (usernameExists) {
             return res.status(400).send({ message: "Failed! Username is already in use!" });
           }
       
-          // Check if email exists
+          // Check duplikat email
           const emailExists = await User.exists({ email: req.body.email });
           if (emailExists) {
             return res.status(400).send({ message: "Failed! Email is already in use!" });
           }
       
-          // If neither username nor email exists, move to the next middleware
+          // bila tidak ada duplikat username dan email 
           next();
         } catch (error) {
           console.error(error);
@@ -67,13 +69,11 @@ mongoose
           password: bcrypt.hashSync(req.body.password, 8),
         });
     
-        // Save the user to the database
+        // menyimpan data user ke dalem database
         await user.save()
     
-        // Send success response
         res.send({ message: "User was registered successfully!" });
       } catch (error) {
-        // Handle errors
         console.error(error);
         res.status(500).send({ message: "Internal Server Error" });
       }
@@ -94,13 +94,12 @@ mongoose
         const token = jwt.sign({ id: user.id }, config.secret, {
           algorithm: 'HS256',
           allowInsecureKeySizes: true,
-          expiresIn: 30, // 24 hours 86400
+          expiresIn: 30, // 24 hours 86400 (jumlah session yang di gunakan)
         });
     
-        // Set the token in the session
         req.session.token = token;
     
-        // Return user data and token as JSON response
+        // mengembalikan data user sebagai JSON
         res.status(200).json({
           id: user._id,
           username: user.username,
@@ -113,6 +112,17 @@ mongoose
       }
     });
 
+app.get('/api/anime/search', async (req, res) => {
+  const query = req.query.q;
+  try {
+    const results = await Anime.find({ $text: { $search: query } });
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // memangil fungsi dari anime untuk di jadikan list pada  data list 
 
 app.get('/api/anime',async (req,res) => {
@@ -120,7 +130,6 @@ app.get('/api/anime',async (req,res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
     const animeList = await Anime.find().skip(startIndex).limit(limit);
     const totalItems = await Anime.countDocuments();
     const response = {

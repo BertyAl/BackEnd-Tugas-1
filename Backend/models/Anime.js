@@ -9,6 +9,8 @@ const AnimeSchema = mongoose.Schema({
   season: String,
   num_episodes: Number
 });
-    
+
+AnimeSchema.index({ title: 'text'});
+
 const Anime = mongoose.model("AnimeList", AnimeSchema,"AnimeList");
 module.exports = Anime;
