@@ -1,0 +1,33 @@
+<div class="News-container">
+    <article class="News-article">
+        <h2 class="News-title">berita terbaru</h2>
+        <div class="News-content">
+            <div class="section-container">
+                <!-- Hapus elemen gambar -->
+                <div class="section-text">
+                    <h3 class="section-title">Suzume’s medapatkan respon postif dalam penayangnya di jepang</h3>
+                    <p class="section-info">Setelah penayangannya berakhir di bioskop Jepang pada hari Sabtu, Suzume no Tojimari mencapai kesuksesan luar biasa, mengumpulkan pendapatan kotor box office final yang diperkirakan sebesar 14,79 miliar yen (setara dengan sekitar $105,3 juta USD) dan berhasil menjual 11,15 juta tiket.
+                        Secara mengesankan, film ini berhasil melampaui pendapatan box office seumur hidup karya sebelumnya Makoto Shinkai, Weathering With You (Tenki no Ko), yang mencapai 14,23 miliar yen (sekitar $101 juta USD dalam konversi saat ini). Sebagai hasilnya, Suzume no Tojimari kini memegang gelar bergengsi sebagai film terlaris ke-14 di Jepang dan film anime terlaris kedelapan di Jepang.</p>
+                    <div class="button-container">
+                        <!-- Tambahkan tombol untuk menambahkan komentar atau membuat diskusi -->
+                        <button class="button" onclick="showCommentSection()">Tambahkan Komentar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="separator"></div>
+        </div>
+    </article>
+</div>
+
+<!-- Tambahkan elemen untuk komentar -->
+<div id="commentSection" style="display: none;">
+    <h3>Komentar:</h3>
+    <!-- Tempatkan formulir atau area untuk menampilkan komentar di sini -->
+</div>
+
+<script>
+    function showCommentSection() {
+        var commentSection = document.getElementById("commentSection");
+        commentSection.style.display = "block";
+    }
+</script>

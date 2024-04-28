@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class AnimeDetailsComponent implements OnInit {
   anime_id: string;
   anime: any;
+  newComment: string;
+  comments: string[] = []; // Array to store comments
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -31,5 +32,12 @@ export class AnimeDetailsComponent implements OnInit {
         console.error('Error fetching anime details:', error);
       }
     );
+  }
+
+  addComment() {
+    if (this.newComment) {
+      this.comments.push(this.newComment); // Add the new comment to the comments array
+      this.newComment = ''; // Clear the input field after adding comment
+    }
   }
 }
