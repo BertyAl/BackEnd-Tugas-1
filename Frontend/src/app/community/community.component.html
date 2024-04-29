@@ -2,16 +2,24 @@
     
     <div class="header-container">
         <h2>Community</h2>
-        <ul>
-            <!-- <li *ngFor="let post of posts">{{ post }}</li> -->
-        </ul>
     </div>
-    <div class="friend-list-container">
-        <h4>Friend List</h4>
+
+    <div class="friend-list-container" (click)="onCreate()">
+        <button class="add-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="plus-icon">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M11 18h2v-5h5v-2h-5V6h-2v5H6v2h5z"/>
+            </svg>
+        </button>
+
+        <div class="Search-bar-container">
+            <div class="Searchbar">
+                <input type="text" placeholder="Search anime...">
+                <button class="search-button" (click)="routeToNews()" >Reset</button>
+            </div>
+        </div>
     </div>
-    <div class="Search-bar-container">
-        <h4>Searchbar</h4>
-    </div>
+
     <div class="community-container">
         <h4>List Post2</h4>
     </div>
@@ -20,26 +28,6 @@
         <h4>List Post1</h4>
     </div>
     
-    <div class="community-container">
-        <h4>List Post2</h4>
-    </div>
 
-    <div class="community1-container">
-        <h4>List Post1</h4>
-    </div>
-    <div class="community-container">
-        <h4>List Post2</h4>
-    </div>
 
-    <div class="community1-container">
-        <h4>List Post1</h4>
-    </div>
-
-    <div class="community-container">
-        <h4>List Post2</h4>
-    </div>
-
-    <div class="community1-container">
-        <h4>List Post1</h4>
-    </div>
 </div>

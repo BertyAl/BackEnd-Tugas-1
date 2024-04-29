@@ -46,7 +46,7 @@ export class AnimeListComponent implements OnInit {
   
   if (!this.searchQuery.trim()) {
     
-    this.router.navigateByUrl('/anime-list');
+    
   } else {
     this.search('');
   }

@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Anime = require("./models/Anime.js");
 const User = require("./models/User.js");
+const Form = require("./models/Form.js");
+
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 var jwt = require("jsonwebtoken");
@@ -161,4 +163,40 @@ app.get('/api/anime/:anime_id', async (req, res) => {
   }
 });
 
+app.post(
+  "/api/form/create",
+  [
+    checkDuplicateTitle = async (req, res, next) => {
+      try {
+        // check duplikat tile
+        const titleExists = await Form.exists({ title: req.body.title });
+        if (titleExists) {
+          return res.status(400).send({ message: "Failed! Thread is already in Create!" });
+        }
+    
+        // bila tidak ada duplikat 
+        next();
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+     },
+    ],
+exports.form = async (req, res) => {
+  const { title, thread } = req.body;
+  try {
+    const form = new Form({
+      title,
+      thread,
+    });
 
+    // menyimpan data form ke dalem database
+    await form.save()
+
+    res.send({ message: "Thread has been created!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+
+});
