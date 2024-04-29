@@ -11,13 +11,14 @@ import { LoginComponent } from './login/login.component';
 import { ForgotpwComponent } from './forgotpw/forgotpw.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { GenreComponent } from './genre/genre.component';
+import { CommunityComponent } from './community/community.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HeaderComponent,
-    outlet: 'header', // Define an outlet for the header
+    outlet: 'header', 
   },
   {
     path: '',
@@ -34,7 +35,7 @@ const routes: Routes = [
   {
     path: '',
     component: FooterComponent,
-    outlet: 'footer', // Define an outlet for the footer
+    outlet: 'footer', 
   },
   {
     path: 'news',
@@ -43,6 +44,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'genre',
+    component: GenreComponent,
+  },
+  {
+    path: 'community',
+    component: CommunityComponent,
   },
   {
     path: 'forgotpw',
@@ -55,6 +64,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'comunity',
+    component:CommunityComponent,
   },
 ];
 

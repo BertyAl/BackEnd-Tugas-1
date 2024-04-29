@@ -10,8 +10,17 @@
         <p><strong>Genre:</strong> {{ anime.genres }}</p>
         <p><strong>Release Date:</strong> {{ anime.season }}</p>
         <p><strong>Studio:</strong> {{ anime.studios }}</p>
-        <!-- Add more details as needed -->
       </div>
+    </div>
+    <div class="comment-section">
+      <h2>Comments</h2>
+      <div class="comment-input">
+        <input type="text" placeholder="Add your comment..." [(ngModel)]="newComment" />
+        <button (click)="addComment()">Add Comment</button>
+      </div>
+      <ul>
+        <li *ngFor="let comment of comments">{{ comment }}</li>
+      </ul>
     </div>
     <div *ngIf="!anime">
       <p>Loading anime details...</p>

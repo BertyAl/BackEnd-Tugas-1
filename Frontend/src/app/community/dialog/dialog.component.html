@@ -1,0 +1,26 @@
+
+  <div class="dialog-container">
+    <h2>New Post</h2>
+
+    <form [formGroup]="fm1" (ngSubmit)="submitForm()" class="form-container">
+    <!-- form title -->
+      <mat-form-field class="title-field">
+        <input matInput formControlName="title" placeholder="Title" required>
+        <mat-error *ngIf="fm1.get('title').invalid && fm1.get('title').touched">Judul harus di isi</mat-error>
+      </mat-form-field>
+      <div *ngIf="titleExistsWarning" class="title-warning">Title is already in use!</div>
+      <!-- form isi -->
+      <mat-form-field class="thread-field">
+        <textarea matInput formControlName="thread" placeholder="" required maxlength="1000" rows="9"> </textarea>
+        <mat-error *ngIf="fm1.get('thread').invalid && fm1.get('thread').touched">Minimal 1 huruf</mat-error>
+      </mat-form-field>
+      <!-- bagian button -->
+      <div class="dialog-buttons">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button type="button" (click)="closeDialog()">Cancel</button>
+      </div>
+    </form>
+
+
+  </div>
+  
