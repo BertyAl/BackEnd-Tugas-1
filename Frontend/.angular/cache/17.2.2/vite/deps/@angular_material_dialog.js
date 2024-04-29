@@ -29,7 +29,7 @@ import {
   getRtlScrollAxisType,
   hasModifierKey,
   supportsScrollBehavior
-} from "./chunk-LZ4S2T65.js";
+} from "./chunk-KQO3NI2B.js";
 import {
   DOCUMENT,
   Location

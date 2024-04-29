@@ -35,7 +35,7 @@
   }
   
   .anime-info a {
-    color: #007bff;
+    color: #1c2d3f;
     text-decoration: none;
     display: block;
     margin-top: 10px;
@@ -71,12 +71,12 @@
   
   .Searchbar input[type="text"]:hover,
   .Searchbar input[type="text"]:focus {
-    border-color: #007bff; 
+    border-color: #0b1623; 
   }
   .search-button {
     margin-left: 10px;
     padding: 12px 20px;
-    background-color: #007bff;
+    background-color: #1c2d3f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -84,5 +84,5 @@
   }
   
   .search-button:hover {
-    background-color: #0056b3;
+    color: #ffcc00;
   }
