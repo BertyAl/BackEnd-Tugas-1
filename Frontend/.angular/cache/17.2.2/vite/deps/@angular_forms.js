@@ -6378,13 +6378,4 @@ export {
   ɵNgNoValidate,
   ɵNgSelectMultipleOption
 };
-/*! Bundled license information:
-
-@angular/forms/fesm2022/forms.mjs:
-  (**
-   * @license Angular v17.2.3
-   * (c) 2010-2022 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-*/
 //# sourceMappingURL=@angular_forms.js.map

@@ -45,4 +45,22 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(AUTH_API + 'signout', { }, httpOptions);
   }
+
+  form(title: string, thread: string): Observable<any> {
+    return this.http.post(
+      'http://localhost:4000/api/form/create',
+      {  
+        title, 
+        thread,
+      },
+       httpOptions
+      ); 
+  }
+
+
+
+
+
+
+
 }

@@ -1,6 +1,21 @@
 <div class="anime-list-container">
+<br>
+  <div class="header-container">
     <h2>Anime List</h2>
-  
+
+    <div class="Searchbar">
+      <input type="text" placeholder="Search anime..." [(ngModel)]="searchQuery" (input)="search(searchQuery)">
+      <button class="search-button" (click)="resetSearch()" >Reset</button>
+    </div>
+  </div>
+    
+
+    <div class="pagination" style="text-align: center;">
+      <button (click)="previousPage()">Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()">Next</button>
+    </div>
+    
     <ul class="anime-list">
       <li *ngFor="let anime of animeList">
         <img [src]="anime.main_pic" alt="{{ anime.title }}" />
