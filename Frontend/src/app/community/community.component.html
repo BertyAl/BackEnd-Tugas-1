@@ -4,7 +4,7 @@
         <h2>Community</h2>
     </div>
 
-    <div class="friend-list-container" >
+    <div class="add-container" >
         <button class="add-button" (click)="onCreate()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="plus-icon">
                 <path d="M0 0h24v24H0z" fill="none"/>
@@ -21,6 +21,7 @@
     </div>
 
     <div class="community-container">
+        <h2>Forum</h2>
         <ul>
             <li *ngFor="let thread of threadList">    
               <div class="Thread-info">

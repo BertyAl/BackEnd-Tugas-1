@@ -23,18 +23,54 @@
     text-align: center;
 }
 
-.community-container{
-    margin-top: 20px;
-    
-    background-color: #FFFFFF; 
-    border: 1px solid #CCCCCC;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+.community-container {
+  padding: 20px;
+  padding-bottom: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  // background-color: #f9f9f9;
 }
 
-.friend-list-container{
+.community-container h2 {
+  text-align: center;
+}
+.community-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.community-container li {
+  margin-bottom: 20px;
+}
+
+.Thread-info {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.Thread-info:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Thread-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  cursor:pointer;
+}
+
+.Thread-info h3:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.add-container{
     margin-top: 20px;
     background-color: #FFFFFF;
     border: 1px solid #CCCCCC;
