@@ -1,0 +1,33 @@
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 900px; /* Adjust width as needed */
+  height: 400PX;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.title-field {
+  width: 100%;
+}
+.thread-field {
+  width: 100%;
+}
+.dialog-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+textarea {
+  resize: none;
+}
+.title-warning {
+  color: red; /* Set the text color to red */
+  font-size: 14px; /* Adjust the font size */
+  margin-top: 5px; /* Add some top margin to separate from other elements */
+}
