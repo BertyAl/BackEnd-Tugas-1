@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ThreadComponent } from './community/thread/thread.component';
 const routes: Routes = [
   // Define your routes here
 ];
@@ -46,6 +47,7 @@ const routes: Routes = [
     GenreComponent,
     CommunityComponent,
     DialogComponent,
+    ThreadComponent,
     
   ],
   imports: [

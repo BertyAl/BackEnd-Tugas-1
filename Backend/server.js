@@ -145,8 +145,34 @@ app.get('/api/anime',async (req,res) => {
   } catch(err){
     console.error('Error fetching anime data:', err);
     res.status(500).json(err);
-  }
+  } 
 });
+
+  app.get("/api/form/get/:title", async (req, res) => {
+    try {
+      const { title } = req.params;
+
+      const threads = await Form.findOne({title: title});
+      if (!threads) {
+        return res.status(404).json({ error: 'Anime not found' });
+      }
+      res.status(200).json(threads);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+  });
+
+  app.get("/api/form/get", async (req, res) => {
+    try {
+    const threadList = await Form.find();
+
+      res.status(200).json(threadList);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+  });
 
 // memangil fungsi dari anime untuk di jadikan list pada  anime details
 app.get('/api/anime/:anime_id', async (req, res) => {

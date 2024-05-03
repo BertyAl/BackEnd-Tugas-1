@@ -1,19 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogComponent } from './dialog/dialog.component';
+import { StorageService } from '../_services/storage.service';
+import { HttpClient } from '@angular/common/http';
+
 import { AnimeService } from '../_services/anime.service';
 
+interface Thread{
+  title: string;
+  thread: string;
+}
+interface ThreadListResponse{
+  threadList: Thread[];
+}
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.scss']
 })
 
+export class CommunityComponent implements OnInit {
+  currentUser: any;
+  threadList: any[] = [];
+  constructor(
+     private http: HttpClient,
+     private router: Router,
+     private storageService: StorageService,
+     private animeService: AnimeService,
+     private dialog: MatDialog) {}
 
-export class CommunityComponent {
-  constructor(private router: Router, private dialog: MatDialog) {}
-
+  ngOnInit(): void {
+    this.loadThreadList('');
+    this.currentUser = this.storageService.getUser();
+  }
   routeToNews() {
     this.router.navigate(['/news']);
 }
@@ -26,9 +46,17 @@ export class CommunityComponent {
 
     this.dialog.open(DialogComponent,dialogConfig);
   }
-  // onCreate(){
-  //   this.dialog.open(DialogComponent,{
-  //     width:'350px',
-  //   })
-  // }
+
+  loadThreadList(title: string): void {
+
+    this.animeService.getThreadList(title).subscribe(
+      results => {
+        this.threadList = results;
+      },
+      error => {
+        console.error('Error fetching thread list:', error);
+      }
+    );
+  }
+
 }

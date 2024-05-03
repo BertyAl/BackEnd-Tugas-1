@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GenreComponent } from './genre/genre.component';
 import { CommunityComponent } from './community/community.component';
+import {ThreadComponent} from './community/thread/thread.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'anime-details/:id',
     component: AnimeDetailsComponent,
+  },
+  {
+    path: 'thread-details/:title',
+    component: ThreadComponent,
   },
   {
     path: '',
