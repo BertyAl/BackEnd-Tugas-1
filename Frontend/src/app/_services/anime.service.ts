@@ -8,14 +8,14 @@ import { catchError } from 'rxjs/operators';
 })
 export class AnimeService {
   private baseUrl = 'http://localhost:4000/api/anime/search/';
+  private apiUrl = 'http://localhost:4000/api/form/get';
+  private genreUrl = 'http://localhost:4000/api/genres';
+
   constructor(private http: HttpClient) { }
   searchAnime(query: string): Observable<any[]> {
     const url = `${this.baseUrl}?q=${query}`; 
     return this.http.get<any[]>(url);
   }
-
-  private apiUrl = 'http://localhost:4000/api/form/get';
-
   getThreadList(title: string): Observable<any[]> {
     return this.http.get<any>(this.apiUrl)
       .pipe(
@@ -38,4 +38,13 @@ export class AnimeService {
     return this.http.get<any>(url);
 
   }
+  getGenres(genres: string): Observable<any> {
+    return this.http.get<any>(this.genreUrl)
+    .pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
+
 }

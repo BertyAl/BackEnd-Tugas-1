@@ -7,13 +7,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { AnimeService } from '../_services/anime.service';
 
-interface Thread{
-  title: string;
-  thread: string;
-}
-interface ThreadListResponse{
-  threadList: Thread[];
-}
+
+
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',

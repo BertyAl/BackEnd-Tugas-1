@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { GenreComponent } from './genre/genre.component';
 import { CommunityComponent } from './community/community.component';
 import {ThreadComponent} from './community/thread/thread.component';
+import {GenredetailComponent} from './genre/genredetail/genredetail.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'genre',
     component: GenreComponent,
+  },
+  {
+    path: 'genre/:genres',
+    component: GenredetailComponent,
   },
   {
     path: 'community',

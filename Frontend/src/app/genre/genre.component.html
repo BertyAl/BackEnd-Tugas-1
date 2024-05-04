@@ -4,34 +4,6 @@
     </div>
 
     <div class="genre-container">
-        <a routerLink="/news">Action</a>
-        <a routerLink="/news">Adventure</a>
-        <a routerLink="/news">Comedy</a>
-        <a routerLink="/news">Drama</a>
-        <a routerLink="/news">Fantasy</a>
-        <a routerLink="/news">Horror</a>
-        <a routerLink="/news">Mystery</a>
-        <a routerLink="/news">Romance</a>
-        <a routerLink="/news">Sci-Fi</a>
-        <a routerLink="/news">Slice of Life</a>
-        <a routerLink="/news">Sports</a>
-        <a routerLink="/news">Supernatural</a>
-        <a routerLink="/news">Kids</a>
-        <a routerLink="/news">Super Power</a>
-        <a routerLink="/news">Mecha</a>
-        <a routerLink="/news">Music</a>
-        <a routerLink="/news">Cars</a>
-        <a routerLink="/news">School</a>
-        <a routerLink="/news">Shounen</a>
-        <a routerLink="/news">Shoujo</a>
-        <a routerLink="/news">Vampire</a>
-        <a routerLink="/news">Psychological</a>
-        <a routerLink="/news">Demons</a>
-        <a routerLink="/news">Seinen</a>
-        <a routerLink="/news">Military</a>
-        <a routerLink="/news">Police</a>
-        <a routerLink="/news">Martial Arts</a>
-        <a routerLink="/news">Historical</a>
-
-    </div>
+        <a *ngFor="let genre of genreList" [routerLink]="'/genre/' + genre">{{ genre }}</a>
+      </div>
 </div>

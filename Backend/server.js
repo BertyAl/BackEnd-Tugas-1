@@ -3,21 +3,21 @@ const mongoose = require('mongoose');
 const Anime = require("./models/Anime.js");
 const User = require("./models/User.js");
 const Form = require("./models/Form.js");
+const config = require("./config/auth.config");
 
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 var jwt = require("jsonwebtoken");
 const methodOverride = require('method-override');
-const config = require("./config/auth.config");
 const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser');
+
 app.use(session({
   secret: config.secret, 
   resave: false,
   saveUninitialized: true
 }));
-
 app.use (methodOverride('_method'));
 app.use(cors());
 app.use(express.json());
@@ -38,6 +38,7 @@ mongoose
     console.log("MongoDB Failed");
   });
 
+  // menambahkan akun melalui signup
    app.post(
     "/api/auth/signup",
     [
@@ -80,7 +81,7 @@ mongoose
         res.status(500).send({ message: "Internal Server Error" });
       }
     }); 
-
+// melakukan login melalui signin
     app.post("/api/auth/signin", exports.signin = async (req, res) => {
       try {
         const user = await User.findOne({ username: req.body.username }).exec();
@@ -113,7 +114,7 @@ mongoose
         res.status(500).json({ message: "Internal Server Error" });
       }
     });
-
+// fungsi search dari anime
 app.get('/api/anime/search', async (req, res) => {
   const query = req.query.q;
   try {
@@ -147,7 +148,7 @@ app.get('/api/anime',async (req,res) => {
     res.status(500).json(err);
   } 
 });
-
+// memanggil thread sesuai dengan title yang di klik dari database
   app.get("/api/form/get/:title", async (req, res) => {
     try {
       const { title } = req.params;
@@ -162,7 +163,7 @@ app.get('/api/anime',async (req,res) => {
       res.status(500).json({ error: 'Internal server error' });
   }
   });
-
+// memanggil thread dari database
   app.get("/api/form/get", async (req, res) => {
     try {
     const threadList = await Form.find();
@@ -189,6 +190,7 @@ app.get('/api/anime/:anime_id', async (req, res) => {
   }
 });
 
+// fungsi untuk membuat baru thread yang akan ditambahkan
 app.post(
   "/api/form/create",
   [
@@ -225,4 +227,29 @@ exports.form = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 
+});
+
+// untuk memanggil sesuai dengan genre yang di tuju
+app.get('/api/genre/:genres', async (req, res) => {
+  try {
+    const genres = req.params.genres;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const startIndex = (page - 1) * limit;
+    const animeList = await Anime.find({ genres: genres }).skip(startIndex).limit(limit);
+    const totalItems = await Anime.countDocuments({ genres });
+    const totalPages = Math.ceil(totalItems / limit);
+
+    const response = {
+      totalItems,
+      totalPages,
+      currentPage: page,
+      animeList: animeList
+      
+    };
+    res.json(response);
+  } catch (error) {
+    console.error('Error fetching anime by genre:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
